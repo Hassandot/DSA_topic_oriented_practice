@@ -1,0 +1,6 @@
+def sumTheTree(node):
+    if node is None:
+        return 0
+    leftSum=sumTheTree(node.left)
+    rightSum=sumTheTree(node.right)
+    return node.value + leftSum + rightSum
