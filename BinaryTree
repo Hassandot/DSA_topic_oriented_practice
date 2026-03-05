@@ -4,3 +4,22 @@ def sumTheTree(node):
     leftSum=sumTheTree(node.left)
     rightSum=sumTheTree(node.right)
     return node.value + leftSum + rightSum
+
+def countNode(node):
+    if node is None:
+        return 0
+    leftSum=countNode(node.left)
+    rightSum=countNode(node.right)
+    return 1 + leftSum + rightSum
+def hhhh(node):
+    if node is None:
+        return -1
+    leftHeight=hhhh(node.left)
+    rightHeight=hhhh(node.right)
+    return 1 + max(leftHeight,rightHeight)
+def diameter(node):
+    if node is None:
+        return 0
+    leftd=hhhh(node.left)
+    rightd=hhhh(node.right)
+    return max(diameter(node),leftd+rightd)
