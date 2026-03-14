@@ -63,3 +63,21 @@ def combine(self, n: int, k: int) -> List[List[int]]:
                     used[i]=False
         bt(0,[])
         return res
+
+# 784. Letter Case Permutation
+# Given a string s, you can transform every letter individually to be lowercase or uppercase to create
+def letterCasePermutation(self, s: str) -> List[str]:
+        res=[]
+        k=len(s)
+        def bt(start,current):
+            if len(current)==k:
+                res.append(current)
+                return 
+            
+            if s[start].isdigit():
+                bt(start+1,current+s[start])
+            else:
+                bt(start+1,current+s[start].lower())
+                bt(start+1,current+s[start].upper())
+        bt(0,'')
+        return res
