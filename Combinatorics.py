@@ -1,4 +1,4 @@
-from typing import List
+from typing import List,Dict
 # 46. Permutations
 # Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
 def permute(self, nums: List[int]) -> List[List[int]]:
@@ -81,3 +81,135 @@ def letterCasePermutation(self, s: str) -> List[str]:
                 bt(start+1,current+s[start].upper())
         bt(0,'')
         return res
+
+#allArrangements
+def allarrangements(s:str)->List[str]:
+     res:List[str]=[]
+     used:List[bool]=[False]*len(s)
+     def backtrack(current:str):
+        if current:
+            res.append(current)
+        for i in range(len(s)):
+            if not used[i]:
+                used[i]=True
+                backtrack(current+s[i])
+                used[i]=False
+    
+     backtrack('')
+     return res
+
+#allarrangementsArray
+def allarrangementsArray(nums:List[int])->List[List[int]]:
+    res:List[List[int]]=[]
+    used:List[bool]=[False]*len(nums)
+
+    def backtrack(current:List[int]):
+        if current:
+            res.append(current)
+        for i in range(len(nums)):
+            if not used[i]:
+                used[i]=True
+                newCurr:List[int]=current[:]
+                newCurr.append(nums[i])
+                backtrack(newCurr)
+                used[i]=False
+    backtrack([])
+    return res
+
+#duplicateArrangements
+
+def allarrangementsDup(nums:List[int])->List[List[int]]:
+    res:List[List[int]]=[]
+    mpp:Dict[int,int]={}
+    for num in nums:
+        mpp[num]=mpp.get(num,0)+1
+    def backtrack(current:List[int]):
+        if current:
+            res.append(current)
+        for num in nums:
+            if mpp[num]>0:
+                mpp[num]-=1
+                newCurr:List[int]=current[:]
+                newCurr.append(num)
+                backtrack(newCurr)
+                mpp[num]-=1
+    backtrack([])
+    return res
+
+#allcombinations
+def allcombinations(s:str)->List[str]:
+    res:List[str]=[]
+    used:List[bool]=[False]*len(s)
+
+    def backtrack(startingIndex:int,current:str):
+        if current:
+            res.append(current)
+        for i in range(startingIndex,len(s)):
+            if not used[i]:
+                used[i]=True
+                backtrack(i+1,current+s[i])
+                used[i]=False
+    backtrack(0,'')
+    return res
+
+#allfixedcombinations
+def allfixedcombinations(s:str,r:int)->List[str]:
+    res:List[str]=[]
+    used:List[bool]=[False]*len(s)
+
+    def backtrack(startingIndex:int,current:str):
+        if r==len(current):
+            res.append(current)
+            return
+        needed:int=r-len(current)
+        remaining:int=len(s)-startingIndex+1
+        if remaining<needed:
+            return 
+        for i in range(startingIndex,len(s)):
+            if not used[i]:
+                used[i]=True
+                backtrack(i+1,current+s[i])
+                used[i]=False
+    backtrack(0,'')
+    return res
+
+#allfixedarrangementsArray
+def allfixedarrangementsArray(nums:List[int],r:int)->List[List[int]]:
+    res:List[List[int]]=[]
+    used:List[bool]=[False]*len(nums)
+
+    def backtrack(current:List[int]):
+        if r==len(current):
+            res.append(current)
+            return
+        for i in range(len(nums)):
+            if not used[i]:
+                used[i]=True
+                newCurr:List[int]=current[:]
+                newCurr.append(nums[i])
+                backtrack(newCurr)
+                used[i]=False
+    backtrack([])
+    return res
+
+
+#fixedduplicateArrangements
+
+def allfixedarrangementsDup(nums:List[int],r:int)->List[List[int]]:
+    res:List[List[int]]=[]
+    mpp:Dict[int,int]={}
+    for num in nums:
+        mpp[num]=mpp.get(num,0)+1
+    def backtrack(current:List[int]):
+        if r==len(current):
+            res.append(current)
+            return
+        for num in nums:
+            if mpp[num]>0:
+                mpp[num]-=1
+                newCurr:List[int]=current[:]
+                newCurr.append(num)
+                backtrack(newCurr)
+                mpp[num]-=1
+    backtrack([])
+    return res
