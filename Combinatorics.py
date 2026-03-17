@@ -273,3 +273,21 @@ def combinationSum2(self, nums: List[int], target: int) -> List[List[int]]:
                 
         bt(0,[])
         return res
+
+
+def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        res=[]
+        nums=[i for i in range(1,10)]
+        def bt(start,current):
+            s=sum(current)
+            if s==n and len(current)==k:
+                res.append(current)
+                return
+            if s>n:
+                return
+            for i in range(start,len(nums)):
+                newCurr=current[:]
+                newCurr.append(nums[i])
+                bt(i+1,newCurr)
+        bt(0,[])
+        return res
