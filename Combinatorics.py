@@ -291,3 +291,23 @@ def combinationSum3(self, k: int, n: int) -> List[List[int]]:
                 bt(i+1,newCurr)
         bt(0,[])
         return res
+
+def numTilePossibilities(self, tiles: str) -> int:
+        res=[]
+        mpp={}
+        for t in tiles:
+            mpp[t]=mpp.get(t,0)+1
+
+
+        def bt(current):
+            if current:
+                res.append(current)
+            for t in mpp:
+                if mpp[t]>0:
+                    mpp[t]-=1
+                    current.append(t)
+                    bt(current)
+                    current.pop()
+                    mpp[t]+=1
+        bt([])
+        return len(res)
