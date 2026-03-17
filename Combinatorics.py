@@ -252,3 +252,24 @@ def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
                     return
         bt(0,[])
         return res
+
+def combinationSum2(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        res=[]
+        def bt(start,current):
+            s=sum(current)
+            if s==target:
+                res.append(current)
+                return
+            for i in range(start,len(nums)):
+                if i>start and nums[i]==nums[i-1]:
+                    continue
+                if s+nums[i]>target:
+                    break
+
+                newCurr=current[:]
+                newCurr.append(nums[i])
+                bt(i+1,newCurr)
+                
+        bt(0,[])
+        return res
