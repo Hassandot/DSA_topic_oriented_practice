@@ -234,3 +234,21 @@ def permuteUnique(self, nums: List[int]) -> List[List[int]]:
                     mpp[num]+=1
         bt([])
         return res
+
+
+def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res=[]
+        def bt(start,current):
+            if sum(current)==target:
+                res.append(current)
+                return
+            
+            for i in range(start,len(candidates)):
+                if sum(current)<target:
+                    newCurr=current[:]
+                    newCurr.append(candidates[i])
+                    bt(i,newCurr)
+                else:
+                    return
+        bt(0,[])
+        return res
