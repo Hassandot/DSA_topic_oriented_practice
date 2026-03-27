@@ -1,4 +1,7 @@
 
+from typing import List
+
+
 class Solution:
     def __init__(self):
         self._encryptTable:Dict[str,str]={}
@@ -64,3 +67,11 @@ def productExceptSelf(self, nums: List[int]) -> List[int]:
         for i in range(n):
             res.append(prefix[i]*postfix[i+1])
         return res
+
+def hasDuplicate(self, nums: List[int]) -> bool:
+        mpp={}
+        for num in nums:
+            mpp[num]=mpp.get(num,0)+1
+            if mpp[num]==2:
+                return True
+        return False
