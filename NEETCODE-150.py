@@ -136,3 +136,51 @@ def longestConsecutive(self, nums: List[int]) -> int:
                 currentbest=1
                 lastelement=arr[i]
         return max(currentbest,lastbest)
+
+
+
+def isValidSudoku(board: List[List[str]]) -> bool:
+    m=len(board)
+    n=len(board[0])
+    rows=[]
+    matrixs=[]
+    for i in range(m):
+        mpp={}
+        row=[]
+        for j in range(n):
+            row.append(board[i][j])
+            if (j+1)%3==0:
+                rows.append(row)
+                row=[]
+            if board[i][j].isdigit():
+                mpp[board[i][j]]=mpp.get(board[i][j],0)+1
+                if mpp[board[i][j]]==2:
+                    return False
+        if (i+1)%3==0:
+            for x in range(3):
+                mat=[]   
+                mat.append(rows[x])
+                temp=x
+                for y in range(2):
+                    mat.append(rows[temp+3])
+                    temp+=3
+                matrixs.append(mat)
+            rows=[]
+    for matrix in matrixs:
+        mpp={}
+        for i in range(3):
+            for j in range(3):
+                if matrix[i][j].isdigit():
+                    mpp[matrix[i][j]]=mpp.get(matrix[i][j],0)+1
+                    if mpp[matrix[i][j]]==2:
+                        return False
+
+    for i in range(n):
+        mpp={}
+        for j in range(m):
+            if board[j][i].isdigit():
+                mpp[board[j][i]]=mpp.get(board[j][i],0)+1
+                if mpp[board[j][i]]==2:
+                    return False
+    return True
+
