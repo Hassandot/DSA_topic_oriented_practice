@@ -75,3 +75,17 @@ def hasDuplicate(self, nums: List[int]) -> bool:
             if mpp[num]==2:
                 return True
         return False
+def isAnagram(self, s: str, t: str) -> bool:
+        mpp1,mpp2={},{}
+        for ch in s:
+            mpp1[ch]=mpp1.get(ch,0)+1
+        for ch in t:
+            mpp2[ch]=mpp2.get(ch,0)+1
+        if len(mpp1)!=len(mpp2):
+            return False
+        if set(s)!=set(t):
+            return False
+        for key,value in mpp1.items():
+            if mpp2[key]!=value:
+                return False
+        return True
