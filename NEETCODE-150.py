@@ -98,3 +98,12 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
             else:
                 mpp[nums[i]]=i
         return []
+
+def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        mpp={}
+        for w in strs:
+            k=sorted(w)
+            mpp[tuple(k)]=mpp.get(tuple(k),[])
+            mpp[tuple(k)].append(w)
+        return [value for key,value in mpp.items()]
+
