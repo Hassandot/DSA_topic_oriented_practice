@@ -119,3 +119,20 @@ def topKFrequent(self, nums: List[int], k: int) -> List[int]:
             else:
                 res.append(p[0])
         return res
+def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums)==0:
+            return 0
+        arr=list(set(nums))
+        arr.sort()
+        lastbest=0
+        currentbest=1
+        lastelement=arr[0]
+        for i in range(1,len(arr)):
+            if (arr[i]-lastelement)==1:
+                lastelement=arr[i]
+                currentbest+=1
+            else:
+                lastbest=max(lastbest,currentbest)
+                currentbest=1
+                lastelement=arr[i]
+        return max(currentbest,lastbest)
