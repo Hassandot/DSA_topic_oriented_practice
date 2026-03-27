@@ -106,4 +106,16 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
             mpp[tuple(k)]=mpp.get(tuple(k),[])
             mpp[tuple(k)].append(w)
         return [value for key,value in mpp.items()]
-
+def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        mpp={}
+        for num in nums:
+            mpp[num]=mpp.get(num,0)+1
+        arr=[(key,value) for key,value in mpp.items()]
+        arr.sort(reverse=True,key=lambda x:x[1])
+        res=[]
+        for i,p in enumerate(arr):
+            if i==k:
+                break
+            else:
+                res.append(p[0])
+        return res
