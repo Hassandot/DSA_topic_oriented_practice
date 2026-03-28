@@ -184,3 +184,19 @@ def isValidSudoku(board: List[List[str]]) -> bool:
                     return False
     return True
 
+def isPalindrome(self, s: str) -> bool:
+        low,high=0,len(s)-1
+        while low<=high:
+            if not s[low].isalnum():
+                low+=1
+                continue
+            elif not s[high].isalnum():
+                high-=1
+                continue
+            elif s[low].isalnum() and s[high].isalnum():
+                if s[low].lower()!=s[high].lower():
+                    return False
+                else:
+                    low+=1
+                    high-=1
+        return True
