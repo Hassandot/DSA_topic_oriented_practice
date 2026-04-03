@@ -249,3 +249,20 @@ class MinStack:
 
     def getMin(self) -> int:
         return min(self.stack)
+def evalRPN(self, tokens: List[str]) -> int:
+        stack=[]
+        for i in range(len(tokens)):
+            if tokens[i] in '+-*/':
+                secondnumber=stack.pop()
+                firstnumber=stack.pop()
+                if tokens[i]=='+':
+                    stack.append(firstnumber+secondnumber)
+                elif tokens[i]=='-':
+                    stack.append(firstnumber-secondnumber)
+                elif tokens[i]=='*':
+                    stack.append(firstnumber*secondnumber)
+                else :
+                    stack.append(int(float(firstnumber)/secondnumber))
+            else:
+                stack.append(int(tokens[i]))
+        return stack.pop()
