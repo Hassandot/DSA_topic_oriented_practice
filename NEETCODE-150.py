@@ -280,3 +280,19 @@ def dailyTemperatures(self, t: List[int]) -> List[int]:
                     stack.pop()
                 stack.append(i)
         return res
+def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        res=[]
+        dummy=head
+        while dummy:
+            res.append(dummy.val)
+            dummy=dummy.next
+        rev=list(reversed(res))
+        reshead=head
+        tempreshead=reshead
+        i=0
+        while reshead:
+            reshead.val=rev[i]
+            reshead=reshead.next
+            i+=1
+        return tempreshead
+        
